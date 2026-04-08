@@ -46,8 +46,14 @@ export default function AdminDashboard() {
   ];
 
   if (loading) return (
-    <div style={{ textAlign: "center", padding: "100px", color: "#64748b", fontWeight: "600" }}>
-      Loading platform analytics...
+    <div style={{ width: "100%", padding: "24px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px", marginBottom: "32px" }}>
+        {[1, 2, 3, 4].map(i => <div key={i} className="skeleton" style={{ height: "110px", borderRadius: "20px" }}></div>)}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "24px", marginBottom: "32px" }}>
+        <div className="skeleton" style={{ height: "300px", borderRadius: "20px" }}></div>
+        <div className="skeleton" style={{ height: "300px", borderRadius: "20px" }}></div>
+      </div>
     </div>
   );
 
@@ -56,7 +62,7 @@ export default function AdminDashboard() {
       {/* Stat Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px", marginBottom: "32px" }}>
         {statCards.map((card, idx) => (
-          <div key={idx} style={{ 
+          <div key={idx} className="card" style={{ 
             backgroundColor: "white", padding: "24px", borderRadius: "20px", border: "1px solid #e2e8f0",
             boxShadow: "0 2px 4px rgba(0,0,0,0.02)", borderLeft: `4px solid ${card.color}`
           }}>
@@ -73,7 +79,7 @@ export default function AdminDashboard() {
 
       <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "24px", marginBottom: "32px" }}>
         {/* Recent Activity */}
-        <div style={sectionCardStyle}>
+        <div style={sectionCardStyle} className="card">
           <div style={sectionHeaderStyle}>
             <Activity size={18} />
             <span>Recent Reading Activity</span>
@@ -103,7 +109,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Top Resources */}
-        <div style={sectionCardStyle}>
+        <div style={sectionCardStyle} className="card">
           <div style={sectionHeaderStyle}>
             <BookMarked size={18} />
             <span>Trending Resources</span>
@@ -128,7 +134,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Program Enrollments */}
-      <div style={sectionCardStyle}>
+      <div style={sectionCardStyle} className="card">
         <div style={sectionHeaderStyle}>
           <Target size={18} />
           <span>New Program Enrollments</span>

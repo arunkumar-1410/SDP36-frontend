@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { Navbar } from "./components/Navbar";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from './context/AuthContext';
 
 // AdminRoute Guard (Updated for Step 4)
@@ -50,7 +50,14 @@ const UserLayout = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Outlet />
+      </motion.div>
     </>
   );
 };

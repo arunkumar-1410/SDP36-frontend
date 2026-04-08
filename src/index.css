@@ -54,6 +54,64 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Smooth Page Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dashboard Cards */
+.card {
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Button Micro-Interactions */
+button {
+  transition: all 0.2s ease;
+}
+button:hover {
+  transform: scale(1.05);
+}
+button:active {
+  transform: scale(0.95);
+}
+
+/* Sidebar Animation Improvement */
+.sidebar {
+  transition: width 0.3s ease;
+}
+.sidebar-item {
+  transition: all 0.2s ease;
+}
+.sidebar-item:hover {
+  transform: translateX(6px);
+}
+
+/* Skeleton Loading (Pro Look) */
 .skeleton {
-  @apply bg-slate-200 animate-pulse rounded-md;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer 1.5s infinite !important;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Image Hover Effect */
+.resource-card img {
+  transition: transform 0.3s ease;
+}
+.resource-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Gradient Background Touch */
+.dashboard-header {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+  color: white !important;
 }

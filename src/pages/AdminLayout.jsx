@@ -1,6 +1,7 @@
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { LayoutDashboard, BookOpen, Target, Users, LogOut, Bell, User, Activity } from 'lucide-react';
+import { motion } from "framer-motion";
 
 export default function AdminLayout({ title }) {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export default function AdminLayout({ title }) {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
       {/* Sidebar */}
-      <aside style={{
+      <aside className="sidebar" style={{
         width: '240px', height: '100vh', background: '#1e293b', 
         position: 'fixed', top: 0, left: 0, 
         display: 'flex', flexDirection: 'column', zIndex: 100
@@ -51,12 +52,12 @@ export default function AdminLayout({ title }) {
             <div 
               key={item.label}
               onClick={() => navigate(item.path)}
+              className="sidebar-item"
               style={{
                 display: 'flex', alignItems: 'center', gap: '12px',
                 padding: '12px 16px', borderRadius: '10px',
                 cursor: 'pointer', marginBottom: '4px',
                 fontSize: '14px', fontWeight: '500',
-                transition: 'background 0.2s',
                 backgroundColor: isActive(item.path) ? '#3b82f6' : 'transparent',
                 color: isActive(item.path) ? 'white' : '#94a3b8'
               }}
@@ -98,13 +99,13 @@ export default function AdminLayout({ title }) {
       {/* Main Content Area */}
       <main style={{ marginLeft: '240px', flex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Top Bar */}
-        <header style={{
+        <header className="dashboard-header" style={{
           background: 'white', padding: '16px 32px', 
           borderBottom: '1px solid #e2e8f0',
           display: 'flex', justifyContent: 'space-between', 
           alignItems: 'center', position: 'sticky', top: 0, zIndex: 10
         }}>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b' }}>{title}</h2>
+          <h2 style={{ fontSize: '18px', fontWeight: '800', color: 'inherit' }}>{title}</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <div style={{ color: '#64748b', fontSize: '13px', fontWeight: '600' }}>
               {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
@@ -120,7 +121,14 @@ export default function AdminLayout({ title }) {
 
         {/* Page Content */}
         <section style={{ padding: '32px', flex: 1 }}>
-          <Outlet />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Outlet />
+          </motion.div>
         </section>
       </main>
     </div>

@@ -36,8 +36,22 @@ export const UserDashboard = () => {
     };
 
     if (loading) return (
-        <div className="flex items-center justify-center min-h-[60vh]">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="min-h-screen bg-slate-50 pt-32 pb-20">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-1 space-y-8">
+                        <div className="skeleton" style={{ height: "350px", borderRadius: "2.5rem" }}></div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="skeleton" style={{ height: "120px", borderRadius: "1.5rem" }}></div>
+                            <div className="skeleton" style={{ height: "120px", borderRadius: "1.5rem" }}></div>
+                        </div>
+                    </div>
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="skeleton" style={{ height: "200px", borderRadius: "2rem" }}></div>
+                        <div className="skeleton" style={{ height: "300px", borderRadius: "2rem" }}></div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 
@@ -47,7 +61,7 @@ export const UserDashboard = () => {
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Profile Card */}
                     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-1">
-                        <div className="bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm text-center">
+                        <div className="card bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm text-center">
                             <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-[2rem] flex items-center justify-center mx-auto mb-6 text-blue-600 shadow-inner">
                                 <User size={48} />
                             </div>
@@ -60,12 +74,12 @@ export const UserDashboard = () => {
 
                         {/* Stats Card */}
                         <div className="grid grid-cols-2 gap-4 mt-8">
-                            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                            <div className="card bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
                                 <Activity className="text-blue-500 mb-2" size={24} />
                                 <p className="text-2xl font-black">{data?.totalEnrolled || 0}</p>
                                 <p className="text-slate-400 text-[10px] font-black uppercase tracking-wider">Programs</p>
                             </div>
-                            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                            <div className="card bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
                                 <Bookmark className="text-indigo-500 mb-2" size={24} />
                                 <p className="text-2xl font-black">{data?.totalResourcesAccessed || 0}</p>
                                 <p className="text-slate-400 text-[10px] font-black uppercase tracking-wider">Resources</p>
@@ -89,7 +103,7 @@ export const UserDashboard = () => {
                             <div className="space-y-4">
                                 {data?.enrolledPrograms?.length > 0 ? (
                                     data.enrolledPrograms.map((prog) => (
-                                        <div key={prog.id} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between group hover:border-blue-100 transition-all">
+                                        <div key={prog.id} className="card bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center justify-between group hover:border-blue-100 transition-all">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
                                                     <Activity size={24} />
@@ -132,7 +146,7 @@ export const UserDashboard = () => {
                                 </Link>
                             </div>
 
-                            <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                            <div className="card bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
                                 {data?.resourceHistory?.length > 0 ? (
                                     <div className="divide-y divide-slate-50">
                                         {data.resourceHistory.map((res) => (
