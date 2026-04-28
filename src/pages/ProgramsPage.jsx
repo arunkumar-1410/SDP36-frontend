@@ -18,7 +18,7 @@ export const ProgramsPage = () => {
 
   const fetchData = async () => {
     try {
-      console.log('Fetching programs from: http://localhost:9090/api/programs');
+      console.log('Fetching programs from API');
       const pRes = await apiClient.get('/api/programs');
       
       // FIX D: Normalize field names for programs

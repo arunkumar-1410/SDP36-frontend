@@ -28,7 +28,7 @@ export const ResourcesPage = () => {
 
   const fetchResources = async () => {
     try {
-      console.log('Fetching resources from: http://localhost:9090/api/resources');
+      console.log('Fetching resources from API');
       const res = await apiClient.get('/api/resources');
       
       // FIX D: Explicit mapping for camelCase/snake_case compatibility
@@ -65,7 +65,7 @@ export const ResourcesPage = () => {
     // Track the read (silent — never blocks the PDF open)
     const token = localStorage.getItem('token');
     if (token && res.id) {
-        fetch(`http://localhost:9090/api/resources/${res.id}/read`, {
+        fetch(`${import.meta.env.VITE_API_URL || 'https://sdp36-backend.onrender.com'}/api/resources/${res.id}/read`, {
             method: 'POST',
             headers: { 
                 'Authorization': `Bearer ${token}`,

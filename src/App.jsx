@@ -5,7 +5,6 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from './context/AuthContext';
 
-// AdminRoute Guard (Updated for Step 4)
 const AdminRoute = ({ children }) => {
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
@@ -23,7 +22,6 @@ const AdminRoute = ({ children }) => {
   return children;
 };
 
-// Lazy loading components
 const HomePage = lazy(() => import("./pages/HomePage").then(m => ({ default: m.HomePage })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then(m => ({ default: m.LoginPage })));
 const SignupPage = lazy(() => import("./pages/SignupPage").then(m => ({ default: m.SignupPage })));
